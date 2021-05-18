@@ -7,7 +7,7 @@ Method: Analyze dark matter particle data from simulations of ultrafaint dwarfs 
 
 Goal: Determine if the dark matter density profile changes as a function of : SNe energy, inclusion of radiative transport, halo mass, SF history
 
-Step 1: 
+Step One:
 
 Clone this Repo.
 
@@ -17,7 +17,7 @@ Use NFW.py to determine the scale length, virial radius and virial concentration
 
 Commit the code to the repo.
 
-Step 2:
+Step Two:
 
 In the Jupyter Notebook, plot the NFW density profile for a halo with virial mass 10^9 Msun. 
 
