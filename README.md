@@ -11,13 +11,29 @@ Step One:
 
 Clone this Repo.
 
-Create a Jupyter Notebook and import the NFW.py code 
-
-Use NFW.py to determine the scale length, virial radius and virial concentration for a halo of mass 1e9.
+Create a Jupyter Notebook (with Anaconda).  This is a test code. 
 
 Commit the code to the repo.
 
-Step Two:
+Get used to commands: 
+git pull
+git status
+git add 
+git commit -m " COMMENT HERE "
+git push
+
+
+
+
+
+Step Two: 
+
+In the new Jupyter Notebook, import the NFW.py code 
+
+Use NFW.py to determine the scale length, virial radius and virial concentration for a halo of mass 1e9.
+
+
+Step Three:
 
 In the Jupyter Notebook, plot the NFW density profile for a halo with virial mass 10^9 Msun. 
 
