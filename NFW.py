@@ -60,13 +60,13 @@ class NFW:
 
     
     def v_vir(self):
-        # Circular speed at the virial radius 
+        # Circular speed at the virial radius (in km/s)
         rvir = self.r_vir()
         return np.sqrt(self.G*self.Mvir/rvir)
     
     
     def r_s(self, c=False):
-        # Scale length for the NFW profile
+        # Scale length for the NFW profile (in kpc)
         if c:
             return self.r_vir()/c
         else: 
@@ -97,14 +97,19 @@ class NFW:
         return self.Mvir*self.f(x)/self.f(cvir)
 
     
-    def rho(self, r, c=False):
-         """NFW density profile as a function of r
+    def rho(self,r, c=False):
+        """NFW density profile as a function of r
         Input: r = Galactocentric distance (kpc)
         c = concentration - Can take concentration as given (cvir) or give it a value
         """
+        if c:
+            cvir = c
+        else:
+            cvir = self.c_vir()
         
-        return self.mass(r,c=c)/(4/3*np.pi*r**3)
-   
+        return self.mass(r,c=cvir)/(4/3*np.pi*r**3)
+    
+    
 
 
     
