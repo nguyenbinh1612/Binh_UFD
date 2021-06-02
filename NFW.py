@@ -21,6 +21,7 @@ class NFW:
         
         # get the gravitational constant (the value is 4.498502151575286e-06)
         self.G = const.G.to(u.kpc**3/u.Msun/u.Gyr**2).value
+        #print(self.G)
           
         # initialize the virial mass global variable    
         self.Mvir = Mv
@@ -106,8 +107,8 @@ class NFW:
             cvir = c
         else:
             cvir = self.c_vir()
-        
-        return self.mass(r,c=cvir)/(4/3*np.pi*r**3)
+        x = r/self.r_s(cvir)
+        return self.mass(r,c=cvir)/(4/3*np.pi*r**3)/(x*(1.+x)**2.)
     
     
 
