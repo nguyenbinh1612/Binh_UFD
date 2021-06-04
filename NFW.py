@@ -94,7 +94,7 @@ class NFW:
             cvir = self.c_vir()
         
         x = r/self.r_s(c=cvir)
-        
+        print(self.Mvir)
         return self.Mvir*self.f(x)/self.f(cvir)
 
     
@@ -107,8 +107,10 @@ class NFW:
             cvir = c
         else:
             cvir = self.c_vir()
-        x = r/self.r_s(cvir)
-        return self.mass(r,c=cvir)/(4/3*np.pi*r**3)/(x*(1.+x)**2.)
+        x = r/self.r_s(c=cvir)
+        rho_s = self.Mvir/(4.*np.pi*self.r_s(c=cvir)**3.*self.f(cvir))
+        rho_N = rho_s/(x*(1+x)**2.)
+        return rho_N
     
     
 
