@@ -27,10 +27,12 @@ class NFW:
         self.Mvir = Mv
    
      ## Cosmology Same as Patel 2020
-        self.h = 0.7 # Hubble constant at z=0 / 100 
-        self.omegaM = 0.27
+        #self.h = 0.7 # Hubble constant at z=0 / 100 
+        #self.omegaM = 0.27
         self.DelVir = 359  # default z=0 overdensity for this cosmology
-    
+        ##cosmology from Jeon 2021
+        self.h = 0.71
+        self.omegaM = 0.265
     
 
     
