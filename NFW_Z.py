@@ -136,6 +136,12 @@ virial mass, and we define the virial velocity as Vvir^2 = G mvir/Rvir."""
         c = self.Mvir * self.hz(z)/1e12
         return a * b**(-1./3.) * c**(1./3.)
 
+    def M_vir(self,r_vir,z):
+        # virial mass. equation derived by Binh. 
+        a = 206./self.hz(z)
+        b = self.delta_vir(z) * self.OmegaM_Z(z) / 97.2
+        c = self.hz(z)/1e12
+        return (r_vir/a)**3 * b * (1/c)    
     
     def v_vir(self,z):
         # Circular speed at the virial radius (in km/s)
