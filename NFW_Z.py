@@ -14,7 +14,7 @@ import astropy.constants as const
 
 class NFW_Z:
 
-    def __init__(self, Mv):
+    def __init__(self, Mv, cosmo):
         """ Initialize the class with the current Virial mass of the halo 
         Functions now account for the redshift you want 
         input: virial mass in Msun (mass enclosed within Rvir, which is the radius at which the dark matter
@@ -26,16 +26,17 @@ class NFW_Z:
           
         # initialize the virial mass global variable    
         self.Mvir = Mv
-   
-     ## Cosmology Same as Patel 2020
-        #self.h = 0.7 # Hubble constant at z=0 / 100 
-        #self.omegaM = 0.27
-        #self.DelVir = 359  # default z=0 overdensity for this cosmology
-    
-        # Cosmology Same as Jeon+2021
-        self.h0 = 0.71
-        self.omegaM0 = 0.265
-        self.omegaL0 = 1- self.omegaM0
+        
+        if cosmo == "Jeon": # Cosmology Same as Jeon+2021
+            self.h0 = 0.71
+            self.omegaM0 = 0.265
+            self.omegaL0 = 1- self.omegaM0
+            
+        elif cosmo == "TNG": # TNG: The Next Generation
+            self.h0 = 0.6774
+            self.omegaM0 = 0.3089
+            self.omegaL0 = 0.6911
+        
         self.omegaR0 = 8.24e-5 
         self.omegaK0 = 0
         self.Ho = self.h0*100
