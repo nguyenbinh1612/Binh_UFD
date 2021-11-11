@@ -215,5 +215,23 @@ virial mass, and we define the virial velocity as Vvir^2 = G mvir/Rvir."""
         return 0.465*self.v_vir*np.sqrt(cvir/self.f(cvir))
     
   
+    def potential(self,r, c=False):
+
+        if c:
+            cvir = c
+        else:
+            cvir = self.c_vir()
+        
+        x = r/self.r_s(c=cvir)
+
+        return -self.G*self.Mvir/self.f(cvir)*np.log(1+x)/r
+
+    
+    def v_esc(self,r,c=False):
+        "Return in units of km/s"
+        phi = self.potential(r,c=c)
+        return np.sqrt(-2*phi)   
       
+  
+
   
