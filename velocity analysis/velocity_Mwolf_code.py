@@ -172,7 +172,7 @@ class VelocityStuff:
         return stdev_dm_at_rhalf
     
     
-    def dynamical_mass(self, radius_array, dm_distance, bin_size):
+    def dynamical_mass(self, radius_array, dm_distance, bin_size, mass_per_particle):
         
         """This function finds the dynamical mass profile of the galaxy, 
         which is just the dark matter mass profile.
@@ -182,6 +182,7 @@ class VelocityStuff:
         2) dm_distance: the magnitude of the dark matter particles' positions (in kpc) based on the data file.
         Calculated as dm_distance = np.sqrt(x**2 + y**2 + z**2)
         3) bin_size: the resolution of the simulation (in kpc)
+        4) mass_per_particle: the dark matter mass per particle (in Msun). For 2021 data, it's 500; for 2017, it's 2000.
         
         Outputs: an array for the dark matter mass profile of the galaxy."""
         
@@ -190,7 +191,7 @@ class VelocityStuff:
         for radius in radius_array:
             dm_particles = np.where((dm_distance < (radius + bin_size)))
             how_many_particles = np.size(dm_particles)
-            dm_mass_profile[h] = how_many_particles * 500 # 500 Msun is the mass per particle
+            dm_mass_profile[h] = how_many_particles * mass_per_particle
             h += 1
         
         return dm_mass_profile
@@ -214,7 +215,7 @@ class VelocityStuff:
         return 3 * (stdev)**2 * (radius*1000) / G
     
     
-    def Wolf_mass_at_rhalf(self, velocity, star_mass_array, bin_size, star_distance, dm_distance, radius_array):
+    def Wolf_mass_at_rhalf(self, velocity, star_mass_array, bin_size, star_distance, dm_distance, radius_array, mass_per_particle):
         
         """This function gives a Wolf mass estimate for the stellar half-mass of the galaxy
         given the half-light radius (r_half) and the velocity dispersion at that radius.
@@ -229,12 +230,13 @@ class VelocityStuff:
         5) dm_distance: the magnitude of the dark matter particles' positions (in kpc) based on the data file.
         Calculated as dm_distance = np.sqrt(x**2 + y**2 + z**2)
         6) radius_array: an array of radii (in kpc) generated for the analysis.
+        7) mass_per_particle: the dark matter mass per particle of each simulation (in Msun)
         
         Outputs: the Wolf mass estimate in the x, y or z direction (in Msun)"""
         
         # First, find the dynamical mass profile of the galaxy, which is just the dark matter mass profile.
         
-        dm_mass_profile = self.dynamical_mass(radius_array, dm_distance, bin_size)
+        dm_mass_profile = self.dynamical_mass(radius_array, dm_distance, bin_size, mass_per_particle)
         
         # Next, this finds the Wolf mass estimator and takes the ratio of that over the dynamical mass at r_half.
         
